@@ -1,15 +1,14 @@
 import mongoose from "mongoose";
 
 const adminisProcedureSchema = mongoose.Schema({
-  title: {
+  personalInfo: {
     type: String,
     require: true,
   },
-  content: {
-    type: String,
-    require: true,
+  serialNumber: {
+    type: Number,
   },
-  instruction: {
+  phoneNumber: {
     type: String,
     require: true,
   },

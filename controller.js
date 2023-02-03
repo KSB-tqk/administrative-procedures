@@ -1,5 +1,6 @@
 import express from "express";
 import AdminisProcedureModel from "./models/administrative_procedure.js";
+import { sendSMS, sendSMS2 } from "./sms_service.js";
 
 const administrativeProcedureController = {
   addAdminisProcedure: async (req, res) => {
@@ -8,14 +9,20 @@ const administrativeProcedureController = {
 
       console.log(req.body);
 
+      adminisProcedure.serialNumber = (await AdminisProcedureModel.count()) + 1;
+
       await adminisProcedure.save();
 
-      res
-        .status(200)
-        .send({
-          msg: "Create adminisProcedure successfully",
-          adminisProcedure,
-        });
+      sendSMS(
+        adminisProcedure.personalInfo,
+        adminisProcedure.serialNumber,
+        adminisProcedure.phoneNumber
+      );
+
+      res.status(200).send({
+        msg: "Create adminisProcedure successfully",
+        adminisProcedure,
+      });
     } catch (err) {
       res.status(400).send({ msg: err.message });
     }
