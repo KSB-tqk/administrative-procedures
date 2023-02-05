@@ -9,7 +9,7 @@ import dotenv from "dotenv";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, "./.env") });
-const accountSid = "AC015c1fd3fcf81e20e7d51faee513039d";
+const accountSid = "AC070ece27ec659901af313be82f21a43c";
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = twilio(accountSid, authToken);
 
@@ -24,7 +24,7 @@ export function sendSMS(personalInfo, serialNumber, phoneNumber) {
         " dang duoc phe duyet voi ma so " +
         generateOTP() +
         " . De nghi truy cap ung dung VNeID hoac dia chi https://vneid.gov.vn de theo doi tien do thu tuc.",
-      from: "+13477574834",
+      from: "+19144772844",
       to: "+84" + phoneNumber,
       // to: "+84939865452",
     })
@@ -35,7 +35,7 @@ export function sendSMS2(personalName, serialNumber, phoneNumber) {
   client.messages
     .create({
       body: "Hello Hiu nha",
-      from: "+13477574834",
+      from: "+19144772844",
       to: "+84" + phoneNumber,
       // to: "+84939865452",
     })
